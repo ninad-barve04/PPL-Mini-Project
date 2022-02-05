@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Map</title>
+        <title>Vegetation Prediction</title>
 
-        <link> rel="stylesheet" type="text/css" href="./mapstyle.css" />
-        <script src=".indexkey.js"></script>
+        <link rel="stylesheet" type="text/css" href="./mapstyle.css" />
+        <script src="./index.js"></script>
     </head>
-
     <body>
-        <h1 style="background-color:lightgreen;">Vegetation Prediction using Google Maps</h1>
+        <h1 style="background-color:lightgreen;"> Vegetation Prediction using Google Maps</h1>
         <h3><font color="blue">Lat-long coordinates</h2>
-            
-            <!---Div element for the map-->
-            <div> id="map></div>
 
-            <!---Async script executes immediately and must be after any DOM elements used in callback. -->
-            <!-- Insert API key in place of YOUR_API_KEY-->
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-                async>
-            </script>
+        <!---Div element for the map-->
+        <div id="map"></div>
+
+        <!---Async script executes immediately and must be after any DOM elements used in callback. -->
+        <!-- Insert API key in place of YOUR_API_KEY-->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+            async
+        ></script>
     </body>
 </html>
-
-
-
