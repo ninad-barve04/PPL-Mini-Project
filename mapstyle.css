@@ -1,7 +1,8 @@
-/* CSS stylesheet for styling the webpage and map id
- * Set the size of the div element that contains the map*/
-
+/* CSS stylesheet for styling the webpage and map id*/
 #map {
-    height: 90%;
-    width: 100%;
+    /* Height is 500 pixels */
+    height: 500px;
+    /* Width is 500 pixels */
+    width: 500px;
 }
+
