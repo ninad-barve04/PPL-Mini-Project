@@ -1,0 +1,10 @@
+ 
+#map {
+  height: 80vh;
+  width:60%;
+}
+
+
+table.table-bordered > thead > tr > th{
+  border:1px solid black;
+}
