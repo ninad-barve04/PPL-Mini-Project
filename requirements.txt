@@ -7,4 +7,4 @@ numpy==1.21.2
 opencv-contrib-python==4.5.5.62
 requests==2.22.0
 requests-unixsocket==0.2.0
-
+gunicorn==20.1.0
