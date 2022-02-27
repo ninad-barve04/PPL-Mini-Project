@@ -122,8 +122,6 @@ def mappage( locid):
 
 @app.route('/newmap')
 def newmappage():
-    
-
     return render_template('newmappage.html')
 
 
