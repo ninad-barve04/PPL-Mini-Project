@@ -17,7 +17,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <script src="/static//map.js"></script>
+  <script src="/static/newmap.js"></script>
 </head>
 
 <body>
@@ -27,6 +27,7 @@
       <div class="col-md-10 p-4" style="color:white">
         <h1>Umbrage - The Green Cover </h1>
         <h5>Portal for forest cover of the regions/locations and track historical data</h5>
+        <h3>Find greencover for new location</h3>
       </div>
       <div class="col-md-2">
         <a href="/"><img src="/static/greenearth.png" width="180px" /></a>
@@ -38,97 +39,57 @@
       </div>
       <div class="col-md-4">
 
-        <div class="row text-center" style="padding-top:10px;"> 
-          <form action="/findcover" method="POST"> 
-            <input id="locid" type="hidden" name="locid" value="{{ location.id }}">
-            <input id="name" type="hidden" name="name" value="{{ location.id }}">
-            <input id="lat" type="hidden" name="lat" value="{{ location.lat }}">
-            <input id="lng" type="hidden" name="lng" value="{{ location.lng }}">
-            <input id="zoom" type="hidden" name="zoom" value="{{ location.zoom }}">
+        <div class="row text-center" style="padding-top:10px;">
+
+          <form action="/addlocation" method="POST">
+            <input id="lat" type="hidden" name="lat">
+            <input id="lng" type="hidden" name="lng">
+            <input id="zoom" type="hidden" name="zoom">
 
             <table style="width:90%;margin-left:auto;margin-right:auto" class="table table-striped table-bordered">
               <thead>
               </thead>
               <tbody>
                 <tr>
+                  <td>Name</td>
+                  <td><input id="name" type="text" name="name"> </td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td><input id="description" type="text" name="description"> </td>
+                </tr>
+                <tr>
                   <td>Lattitude</td>
                   <td>
-                    <div id="dltd" name="ltd" >{{location.lat}}</div>
+                    <div id="dltd"></div>
                   </td>
                 </tr>
                 <tr>
                   <td>Longitude</td>
                   <td>
-                    <div id="dlng" name="lng">{{location.lng}}</div>
+                    <div id="dlng"> </div>
                   </td>
                 </tr>
                 <tr>
                   <td>Zoom Factor</td>
                   <td>
-                    <div id="zmf" name="zoom">{{location.zoom}}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Date</td>
-                  <td>
-                    <div id="fcover">{{location.date}}</div>
+                    <div id="zmf"> </div>
                   </td>
                 </tr>
                 <tr>
                   <td>Forest Cover</td>
                   <td>
-                    <div id="fcover">{{location.greencover}}%</div>
+                    <div id="fcover"> </div>
                   </td>
-                </tr>
-                <tr>
-                  <td colspan="2">
-                    <input id="latestcover" type="submit" value="Find Latest Green Cover">
-                    
-                    <!-- <button  type="submit" class=" btn-default btn-primary" onclick="findArea()">Find Latest Green Cover</button></td> -->
                 </tr>
               </tbody>
             </table>
+            <input id="my_submit" type="submit" value="Find Latest Green Cover and Add location">
           </form>
         </div>
+        <div class="row text-center">
 
-       
-
-        <div class="row text-center" style="padding-top:60px;">
-          <table>
-            <tbody>
-              <tr>
-                <td><img src="/{{location.mapimage}}" style="width:90%"></td>
-                <td><img src="/{{location.greyimage}}" style="width:90%"></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
-
-        <div class="row text-center" style="padding-top:60px;">
-          <h4>Historical Forest Cover</h4>
-          <table style="width:60%;margin-left:auto;margin-right:auto" class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Green Cover</th>
-                 
-              </tr>
-            </thead>
-            <tbody>
- 
-
-
-              {% for record in history %}
-              <tr>
-                  <td>{{record.date}}</td>
-                  <td>{{record.greencover}}%</td>
-              </tr>
-              {% endfor %}
-
-            </tbody>
-          </table>
-        </div>
-
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: Number(ltd), lng: Number(lng) },
     zoom: Number(lzf),
-    mapTypeId: 'satellite',
+    mapTypeId: google.maps.MapTypeId.HYBRID,
     draggableCursor: 'default'
   });
   

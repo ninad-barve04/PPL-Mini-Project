@@ -1,33 +1,35 @@
 import requests
 
-api_key = "AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU"
 
-url = "https://maps.googleapis.com/maps/api/staticmap?"
+def downloadImage( lat , lang, zoom, filename):
+    api_key = "AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU"
 
-center = "18.444665,73.672504"
+    url = "https://maps.googleapis.com/maps/api/staticmap?"
 
-zoom = 8
+    center = lat +','+ lang #"18.444665,73.672504"
 
-maptype = "satellite"
+    #zoom = 8
 
-url2 = url + "center=" + center + "&zoom=" +str(zoom) + "&size=400x400&maptype=satellite&style=feature:poi|element:labels|visibility:off&key=" + api_key + "&sensor=false"
+    maptype = "satellite"
 
-print(url2)
-r = requests.get(url2)
+    url2 = url + "center=" + center + "&zoom=" +str(zoom) + "&size=400x400&maptype=satellite&style=feature:poi|element:labels|visibility:off&key=" + api_key + "&sensor=false"
 
-# r = requests.get("https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap\
-#     &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318\
-# &markers=color:red%7Clabel:C%7C40.718217,-73.998284\
-# &key=AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU")
+    print(url2)
+    r = requests.get(url2)
 
-# url3 = 
+    # r = requests.get("https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap\
+    #     &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318\
+    # &markers=color:red%7Clabel:C%7C40.718217,-73.998284\
+    # &key=AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU")
 
-print(r.status_code)
-# print(r.text)
+    # url3 = 
 
-file = open("google_img.jpg", "wb")
+    print(r.status_code)
+    # print(r.text)
 
-file.write(r.content)
+    file = open( filename, "wb")
 
-file.close()
+    file.write(r.content)
+
+    file.close()
 

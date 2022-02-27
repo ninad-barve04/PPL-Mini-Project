@@ -1,29 +1,20 @@
 import cv2
 import numpy as np
 import math
-import tempfile
-import requests
+from download_img import downloadImage
 
 
-def processImage():
-    api_key = "AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU"
-    url = "https://maps.googleapis.com/maps/api/staticmap?"
-    center = "18.444665,73.672504"
-    zoom = 8
-    maptype = "satellite"
-
-    url2 = url + "center=" + center + "&zoom=" +str(zoom) + "&size=400x400&maptype=satellite&style=feature:poi|element:labels|visibility:off&key=" + api_key + "&sensor=false"
+def processImageForGreenCover( locid, id , lat, long, zoom):
     
-    r = requests.get(url2)
-    dir = tempfile.TemporaryDirectory()
-    image_file = dir + '/google_img.jpg';
-    file = open( image_file, "wb")
-    file.write(r.content)
-    file.close()
+    basepath = '../umbrage/'
+    filename = 'static/'+str(locid)+'/'+str(id)+'_' + 'google_img.jpg'
+    filenameout = 'static/'+ str(locid)+'/'+str(id)+'_' + 'gray_img.jpg'
 
+    print(filename)
+    downloadImage(lat, long, zoom, basepath +  filename )
 
     ## Read
-    img = cv2.imread(image_file)
+    img = cv2.imread(filename)
 
     ## greyscale image
     imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -33,7 +24,7 @@ def processImage():
 
     ## mask of green (36,25,25) ~ (86, 255,255)
     # mask = cv2.inRange(hsv, (36, 25, 25), (86, 255,255))
-    mask = cv2.inRange(hsv, (30, 40, 40), (70, 255,255))
+    mask = cv2.inRange(hsv, (30, 40, 40), (140, 255,255))
 
     ## slice the green
     imask = mask>0
@@ -44,7 +35,7 @@ def processImage():
 
 
     dimensions = green_grayed.shape
-    print(dimensions)
+    #print(dimensions)
 
     count = 0
     x = dimensions[0]
@@ -54,13 +45,13 @@ def processImage():
     y = y - 1
 
 
-    print(green_grayed[10,0])
+   # print(green_grayed[10,0])
 
     for i in range(dimensions[0]):
         for j in range(dimensions[1]):
             value = green_grayed[i][j]
             if value>0:
-                print(value)
+                #print(value)
                 count = count + 1
 
 
@@ -69,13 +60,13 @@ def processImage():
     total_pixels = x*y
 
     #cv2.imshow("green", green)
-    # cv2.waitKey(0)
-    # cv2.imshow("grayimg", green_grayed)
-    # cv2.waitKey(0)
+  #  cv2.waitKey(0)
+   # cv2.imshow("grayimg", green_grayed)
+   # cv2.waitKey(0)
 
 
     # cv2.imwrite("green2.png", green)
-    # cv2.imwrite("grayimg.png", imgray)
+    cv2.imwrite(filenameout, green)
 
 
     length_of_pixel = 156543.03392 * math.cos(18.444665 * math.pi / 180) / math.pow(2, 8)
@@ -89,7 +80,11 @@ def processImage():
     print("\nPercentage of greenery is ", percent)
 
 
-# cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
 
+    d = dict()
+    d['percentage'] = percent;
+    d['in_image'] = filename
+    d['out_image'] = filenameout
 
-processImage()
+    return d
