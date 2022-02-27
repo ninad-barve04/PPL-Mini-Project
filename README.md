@@ -9,3 +9,11 @@ When user selects a location using Google Map, the locations details ( lattitude
 
 
 
+
+Heroku Deployment
+1. Create an app in Heroku and link it to the Git repository
+2. In Heroku app dashboard , goto settings and add a heroku python buildpack. This tells heroku that its a python application
+3. Create requirement.txt file in the root folder of repository. This file contains all the dependent components used by the python code, e.g Flask, Jinja, OpenCV etc
+4. Create Procfile in the root folder of repository. This file specifies the command to run the application. 
+5. Since web app is in subfolder ( greencanopy), Proc file is modified to change the directory and then run the applicaiton.
+6. Heroku uses Gunicorn ( Green Unicorn) as HTTP server to run the application
