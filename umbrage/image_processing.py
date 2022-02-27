@@ -79,9 +79,6 @@ def processImageForGreenCover( locid, id , lat, long, zoom):
     percent = count*100 / total_pixels
     print("\nPercentage of greenery is ", percent)
 
-
-    cv2.destroyAllWindows()
-
     d = dict()
     d['percentage'] = percent;
     d['in_image'] = filename
