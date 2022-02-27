@@ -1,10 +1,10 @@
 import sqlite3
 import json
+import os
 from flask import Flask, render_template, request, redirect
 from flask_cors import CORS, cross_origin
 from image_processing import processImageForGreenCover
-from utils import addDirectory
-
+ 
 app = Flask(__name__,template_folder='templates')
 CORS(app)
 
@@ -12,6 +12,10 @@ def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
+
+def addDirectory(locid):
+    dirname = 'static/' + str(locid)
+    os.makedirs(dirname,exist_ok=True)
 
 
 @app.route('/addlocation', methods = ['POST'])

@@ -1,2 +1,10 @@
-Flask==0.8
-Jinja2==2.6
+Flask==2.0.3
+Flask-Cors==3.0.10
+httplib2==0.14.0
+Jinja2==3.0.3
+json5==0.9.6
+numpy==1.21.2
+opencv-contrib-python==4.5.5.62
+requests==2.22.0
+requests-unixsocket==0.2.0
+
