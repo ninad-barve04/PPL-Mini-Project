@@ -1,1 +1,1 @@
-web: gunicorn --chdir umbrage app:app  
+web: gunicorn --chdir greencanopy app:app  
