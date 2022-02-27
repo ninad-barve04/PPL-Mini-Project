@@ -6,7 +6,7 @@ from download_img import downloadImage
 
 def processImageForGreenCover( locid, id , lat, long, zoom):
     
-    basepath = '../umbrage/'
+    basepath = '../greencanopy/'
     filename = 'static/'+str(locid)+'/'+str(id)+'_' + 'google_img.jpg'
     filenameout = 'static/'+ str(locid)+'/'+str(id)+'_' + 'gray_img.jpg'
 
