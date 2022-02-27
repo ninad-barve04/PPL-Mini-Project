@@ -1,1 +1,1 @@
-web: gunicorn umbrage/app:app  
+web: gunicorn gunicorn --chdir umbrage app:app  
