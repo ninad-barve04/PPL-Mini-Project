@@ -73,7 +73,7 @@ def findCurrentGreenCover():
 
     history = conn.execute('SELECT * FROM history h where h.loc_id = ? ORDER BY date DESC LIMIT 1',[locid]).fetchone()
 
-    print( history[0])
+    
     if history is None:
         historyid = 1
     else:
