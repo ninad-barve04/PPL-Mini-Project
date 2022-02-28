@@ -18,6 +18,8 @@ CREATE TABLE history(
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     mapimage TEXT NOT NULL,
     greyimage TEXT NOT NULL,
-    greencover FLOAT NOT NULL
+    greencover FLOAT NOT NULL,
+    greenarea FLOAT NOT NULL,
+    totalarea FLOAT NOT NULL
 );
 

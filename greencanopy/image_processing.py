@@ -68,19 +68,24 @@ def processImageForGreenCover( locid, id , lat, long, zoom):
     # cv2.imwrite("green2.png", green)
     cv2.imwrite(filenameout, green)
 
+    print(zoom)
+    print(type(lat))
+    #length_of_pixel = 156543.03392 * math.cos(18.444665 * math.pi / 180) / math.pow(2, 8)
+    length_of_pixel = (math.cos(float(lat) * math.pi/180) * 2 * math.pi * 6378137) / (256 * math.pow(2, int(zoom))) 
 
-    length_of_pixel = 156543.03392 * math.cos(18.444665 * math.pi / 180) / math.pow(2, 8)
+    total_area = 400*400 * length_of_pixel * length_of_pixel/1000000
 
-    total_area = count * length_of_pixel * length_of_pixel
+    area_green = count * length_of_pixel * length_of_pixel / 1000000 
 
-    print("Total area in m^2 is")
-    print(total_area)
+    print("Total area in km^2 is", total_area)
 
     percent = count*100 / total_pixels
     print("\nPercentage of greenery is ", percent)
 
     d = dict()
-    d['percentage'] = percent;
+    d['percentage'] = percent
+    d['greenarea'] = area_green
+    d['totalarea'] = total_area
     d['in_image'] = filename
     d['out_image'] = filenameout
 

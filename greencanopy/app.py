@@ -43,13 +43,14 @@ def addnewlocation():
     addDirectory(locid)
     coverData = processImageForGreenCover(locid, historyid, lattitude, longitude, zoom)
 
-    
+    garea = round(coverData['greenarea'], 3)
+    tarea = round(coverData['totalarea'], 3)
     gcover = round(coverData['percentage'], 3)
 
     conn = get_db_connection()
 
-    conn.execute("INSERT INTO history (loc_id, mapimage, greyimage, greencover) VALUES (?,?,?,?)",
-            [locid, coverData['in_image'], coverData['out_image'],gcover]
+    conn.execute("INSERT INTO history (loc_id, mapimage, greyimage, greencover, greenarea, totalarea) VALUES (?,?,?,?,?,?)",
+            [locid, coverData['in_image'], coverData['out_image'],gcover, garea, tarea]
             )
  
     conn.commit()
@@ -84,14 +85,15 @@ def findCurrentGreenCover():
     addDirectory(locid)
     coverData = processImageForGreenCover(locid, historyid, lattitude, longitude, zoom)
 
-    
+    garea = round(coverData['greenarea'], 3)
+    tarea = round(coverData['totalarea'], 3)
     gcover = round(coverData['percentage'], 3)
 
     conn = get_db_connection()
 
-    conn.execute("INSERT INTO history (loc_id, mapimage, greyimage, greencover) VALUES (?,?,?,?)",
-            [locid, coverData['in_image'], coverData['out_image'],gcover]
-            )
+    conn.execute("INSERT INTO history (loc_id, mapimage, greyimage, greencover, greenarea, totalarea) VALUES (?,?,?,?,?,?)",
+                [locid, coverData['in_image'], coverData['out_image'],gcover, garea, tarea]
+                )
  
     conn.commit()
     conn.close()
