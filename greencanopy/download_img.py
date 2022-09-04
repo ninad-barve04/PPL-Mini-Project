@@ -1,8 +1,10 @@
 import requests
+import os
 
 
 def downloadImage( lat , lang, zoom, filename):
-    api_key = "AIzaSyAs7QFlJwNS97PQy_ZILj9yfbaM7OX6RmU"
+    # api_key = os.getenv("GAPKEY")
+    api_key = "AIzaSyD-UxaZpRBzxUXNvTyvw7OqEbSqKPjMHj4"
 
     url = "https://maps.googleapis.com/maps/api/staticmap?"
 
